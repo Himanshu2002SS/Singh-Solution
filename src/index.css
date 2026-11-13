@@ -24,19 +24,198 @@ a {
 }
 
 .hero-backdrop {
-  background-image:
+  overflow: hidden;
+  background: #0d2b1d;
+}
+
+.hero-backdrop::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: '';
+  background:
     linear-gradient(90deg, rgba(7, 37, 23, 0.94) 0%, rgba(7, 37, 23, 0.72) 39%, rgba(7, 37, 23, 0.08) 100%),
-    linear-gradient(0deg, rgba(7, 37, 23, 0.18), rgba(7, 37, 23, 0.06)),
-    url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=2000&q=85");
-  background-position: center, center, center 57%;
+    linear-gradient(0deg, rgba(7, 37, 23, 0.18), rgba(7, 37, 23, 0.06));
+  pointer-events: none;
+}
+
+.hero-slide-track {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  animation: hero-slide 18s ease-in-out infinite;
+}
+
+.hero-slide {
+  flex: 0 0 25%;
+  height: 100%;
+  background-position: center;
   background-size: cover;
 }
 
+.hero-slide--seedling {
+  background-image: url('/image/heroBg.png');
+  background-position: center 57%;
+}
+
+.hero-slide--field {
+  background-image: url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=2000&q=85');
+}
+
+.hero-slide--leaves {
+  background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=2000&q=85');
+}
+
+.nav-enter {
+  animation: enter-from-top 600ms cubic-bezier(0.2, 0.75, 0.3, 1) both;
+}
+
+.nav-menu-enter {
+  animation: enter-from-top 220ms ease-out both;
+}
+
+@keyframes enter-from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-slide {
+  0%,
+  30% {
+    transform: translateX(0);
+  }
+  33.33%,
+  63.33% {
+    transform: translateX(-25%);
+  }
+  66.66%,
+  96.66% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(-75%);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+html.motion-ready .scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+html.motion-ready .scroll-reveal.is-visible {
+  animation: reveal-up 650ms cubic-bezier(0.2, 0.75, 0.3, 1) both;
+}
+
+html.motion-ready .scroll-reveal.reveal-left.is-visible {
+  animation-name: reveal-left;
+}
+
+html.motion-ready .scroll-reveal.reveal-right.is-visible {
+  animation-name: reveal-right;
+}
+
+html.motion-ready .scroll-reveal.reveal-scale.is-visible {
+  animation-name: reveal-scale;
+}
+
+.benefit-grid .scroll-reveal:nth-child(2),
+.stats-grid .scroll-reveal:nth-child(2),
+.service-grid .scroll-reveal:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.benefit-grid .scroll-reveal:nth-child(3),
+.stats-grid .scroll-reveal:nth-child(3),
+.service-grid .scroll-reveal:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.benefit-grid .scroll-reveal:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html.motion-ready .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-slide-track {
+    animation: hero-slide 18s ease-in-out infinite !important;
+  }
+}
+
 @media (max-width: 640px) {
-  .hero-backdrop {
-    background-image:
+  .hero-backdrop::after {
+    background:
       linear-gradient(90deg, rgba(7, 37, 23, 0.94), rgba(7, 37, 23, 0.65)),
-        url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=85");
-    background-position: center, 61% center;
+      linear-gradient(0deg, rgba(7, 37, 23, 0.18), rgba(7, 37, 23, 0.06));
+  }
+
+  .hero-slide {
+    background-position: 61% center;
+  }
+
+  .hero-slide--seedling {
+    background-position: 65% center;
   }
 }

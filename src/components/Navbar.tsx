@@ -24,7 +24,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="relative z-20 bg-[#0d2b1d] text-white">
+    <header className="nav-enter relative z-20 bg-[#0d2b1d] text-white">
       <nav aria-label="Main navigation" className="mx-auto flex min-h-[72px] max-w-7xl items-center justify-between px-6 sm:px-10 lg:max-w-[1600px] lg:px-14">
         <Brand />
         <button
@@ -38,7 +38,7 @@ export default function Navbar() {
             {menuOpen ? <path d="m6 6 12 12M18 6 6 18" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
           </svg>
         </button>
-        <div className={`${menuOpen ? 'flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-5 bg-[#0d2b1d] px-6 pb-6 pt-2 shadow-lg sm:static sm:flex sm:flex-row sm:items-center sm:gap-9 sm:bg-transparent sm:p-0 sm:shadow-none`}>
+        <div className={`${menuOpen ? 'nav-menu-enter flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-5 bg-[#0d2b1d] px-6 pb-6 pt-2 shadow-lg sm:static sm:flex sm:flex-row sm:items-center sm:gap-9 sm:bg-transparent sm:p-0 sm:shadow-none`}>
           <ul className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7">
             {links.map(({ label, href }) => (
               <li key={label}>
